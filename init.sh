@@ -24,9 +24,6 @@ echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" >> /etc/default/hostapd
 echo "copying interfaces conf"
 cp conf/interfaces /etc/network/interfaces
 
-echo "copying udhcpd.conf"
-cp conf/udhcpd.conf /etc/udhcpd.conf
-
 echo "configuring ip forwarding"
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
