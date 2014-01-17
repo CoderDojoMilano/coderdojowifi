@@ -1,5 +1,8 @@
 #! /bin/bash
 
+echo "updating apt-get"
+apt-get update
+
 echo "installing httpd"
 sudo apt-get install dhcpd
 cp conf/udhcpd /etc/default/udhcpd
@@ -17,3 +20,13 @@ sudo chmod 755 /usr/sbin/hostapd
 
 cp conf/hostapd.conf /etc/hostapd/
 echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" >> /etc/default/hostapd
+
+echo "copying interfaces conf"
+cp conf/interfaces /etc/network/interfaces
+
+echo "copying udhcpd.conf"
+cp conf/udhcpd.conf /etc/udhcpd.conf
+
+echo "installing nginx"
+apt-get nginx
+
