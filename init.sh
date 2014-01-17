@@ -2,6 +2,8 @@
 
 echo "installing httpd"
 sudo apt-get install dhcpd
+cp conf/udhcpd /etc/default/udhcpd
+cp conf/udhcpd.conf /etc/udhcpd.conf
 
 echo "installing hostapd..."
 sudo apt-get install bridge-utils hostapd
