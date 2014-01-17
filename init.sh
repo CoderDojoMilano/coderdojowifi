@@ -1,6 +1,9 @@
 #! /bin/bash
 
-echo ÂÂ"installing hostapd..."
+echo "installing httpd"
+sudo apt-get install dhcpd
+
+echo "installing hostapd..."
 sudo apt-get install bridge-utils hostapd
 wget http://www.daveconroy.com/wp3/wp-content/uploads/2013/07/hostapd.zip
 unzip hostapd.zip 
