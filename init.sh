@@ -3,8 +3,8 @@
 echo "updating apt-get"
 apt-get update
 
-echo "installing httpd"
-sudo apt-get install dhcpd
+echo "installing udhcpd"
+sudo apt-get install udhcpd
 cp conf/udhcpd /etc/default/udhcpd
 cp conf/udhcpd.conf /etc/udhcpd.conf
 
@@ -27,6 +27,18 @@ cp conf/interfaces /etc/network/interfaces
 echo "copying udhcpd.conf"
 cp conf/udhcpd.conf /etc/udhcpd.conf
 
+echo "configuring ip forwarding"
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
 echo "installing nginx"
 apt-get nginx
 
+echo "installing gsync tools"
+sudo apt-get install python-setuptools
+sudo easy_install pip
+sudo pip install setuptools --no-use-wheel --upgrade
+sudo pip install gsync
+
+echo "syncing..."
+time gsync --progress -u -d -r -vi drive://coderdojoSource /home/pi
